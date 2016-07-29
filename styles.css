@@ -1,0 +1,85 @@
+body {
+	padding: 30px;
+}
+
+.row {
+	margin-bottom: 30px;
+}
+
+.mg-tile {
+	perspective: 500px;
+}
+
+
+.mg-tile-inner {
+	position: relative;
+	transform-style: preserve-3d;
+	transition: all .5s;
+	width: 150px;
+	height: 250px;
+	border: 1px solid black;
+	background-color: #ddd;
+	margin: 10px 0;
+	border-radius: 5px;
+
+}
+
+.mg-back img {
+	width: 90%;
+	padding-top: 30px;
+}
+
+.mg-front img {
+	width: 100px;
+	margin: auto;
+	padding-top: 30px;
+}
+
+.mg-front, .mg-back {
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	margin: auto;
+	backface-visibility: hidden;
+
+	margin: auto;
+
+}
+
+.mg-front {
+	width: 100%;
+	height: 100%;
+	background: repeating-linear-gradient(
+	  45deg,
+	  white,
+	  white 10px,
+	  black 10px,
+	  black 20px
+	);
+	padding-top: 30px;
+
+
+}
+
+.mg-back {
+	transform: rotateY(180deg);
+	background-color: #ddd;
+
+}
+
+.flip {
+	transform: rotateY(-180deg);
+}
+
+.matched {
+	transform: rotateY(-180deg);
+}
+
+.flip-back {
+	transform: rotateY(360deg);
+}
+
+.difficulty-wrapper {
+
+}

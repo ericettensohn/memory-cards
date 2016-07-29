@@ -1,0 +1,56 @@
+<style type="text/css">
+	#cube {
+		perspective: 200px;
+/* 		perspective-origin: 10% 10%; */
+		border: 1px solid black;
+		width: 200px;
+		margin: auto;
+		margin-top: 150px;
+	}
+
+	#red-square {
+		width: 200px;
+		height: 200px;
+		background-color: red;
+		/* transform: rotateZ(45deg); */
+		transition: all 3s ease;
+		position: absolute;
+		z-index: 1;
+	}
+
+	#blue-square {
+		width: 200px;
+		height: 200px;
+		background-color: blue;
+		transition: all 3s ease;
+		z-index: 0;
+		position: absolute;
+	}
+
+	.flip {
+		transform: rotateY(180deg);
+		z-index: 0 !important;
+	}
+
+	.flip-reverse {
+		transform: rotateY(180deg);
+		z-index: 1 !important;
+	}
+</style>
+
+<div id="cube">
+	<div id="red-square"></div>
+	<div id="blue-square"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#red-square').click(function() {
+			$('#red-square').toggleClass('flip');
+			$('#blue-square').addClass('flip-reverse');
+
+		});
+	});
+</script>
