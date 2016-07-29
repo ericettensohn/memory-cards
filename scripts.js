@@ -84,6 +84,7 @@ function placeCards(){
 		
 	}
 	$('.mg-contents').html(mgHtml);
+	// $('.mg-tile-inner').removeClass('mg-tile-inner-init');
 }
 
 function addListener() {
@@ -130,18 +131,18 @@ function addListener() {
 	
 
 function reset() {
-	setTimeout(function(){
-		$('.mg-tile-inner').addClass('flip-back');
-	}, 1000);
+	// setTimeout(function(){
+		$('.mg-tile-inner').addClass('slip-out');
+	// }, 1000);
 
 	setTimeout(function(){
 		$('.matched').removeClass('matched');
-		$()
 		mgHtml = '';
 		$('.mg-contents').html('');
 		shuffleCards(cards);
 		placeCards();
 		addListener();
 
-	}, 2000);
+
+	}, 1000);
 }

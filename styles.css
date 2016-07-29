@@ -2,13 +2,19 @@ body {
 	padding: 30px;
 }
 
+div {
+	text-align: center;
+}
+
 .row {
 	margin-bottom: 30px;
 }
 
 .mg-tile {
 	perspective: 500px;
+	margin: auto;
 }
+
 
 
 .mg-tile-inner {
@@ -19,20 +25,36 @@ body {
 	height: 250px;
 	border: 1px solid black;
 	background-color: #ddd;
-	margin: 10px 0;
+	margin: 10px auto;
 	border-radius: 5px;
+	text-align: center;
+	animation: fadein 1s;
 
 }
 
+@keyframes fadein {
+    from { opacity: 0; left: -100px; }
+    to   { opacity: 1; left: 0px; }
+}
+
+.slip-out {
+	animation: slipout 1s;
+}
+
+@keyframes slipout {
+	from { opacity: 1; left: 0px; }
+    to   { opacity: 0; left: -100px; }
+}
+
 .mg-back img {
-	width: 90%;
-	padding-top: 30px;
+	max-width: 75%;
 }
 
 .mg-front img {
 	width: 100px;
 	margin: auto;
 	padding-top: 30px;
+
 }
 
 .mg-front, .mg-back {
@@ -42,8 +64,8 @@ body {
 	text-align: center;
 	margin: auto;
 	backface-visibility: hidden;
-
 	margin: auto;
+	padding: 30px 5px;
 
 }
 
