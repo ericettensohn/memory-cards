@@ -114,15 +114,18 @@ function addListener() {
 			}, 1000);
 
 			setTimeout(function(){
+				$('.mg-tile-inner').addClass('slip-out');
+			}, 2000)
+
+			setTimeout(function(){
 				$('.matched').removeClass('matched');
-				$()
 				mgHtml = '';
 				$('.mg-contents').html('');
 				shuffleCards(cards);
 				placeCards();
 				addListener();
 
-			}, 2000);
+			}, 3000);
 		}
 	});
 }
@@ -136,7 +139,7 @@ function reset() {
 	// }, 1000);
 
 	setTimeout(function(){
-		$('.matched').removeClass('matched');
+		// $('.matched').removeClass('matched');
 		mgHtml = '';
 		$('.mg-contents').html('');
 		shuffleCards(cards);
