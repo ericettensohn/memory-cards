@@ -1,74 +1,121 @@
-var cards = [
-		"<img src='images/1.png'>", 
-		"<img src='images/1.png'>", 
-		"<img src='images/2.png'>",
-		"<img src='images/2.png'>", 
-		"<img src='images/3.png'>",
-		"<img src='images/3.png'>",  
-		"<img src='images/4.png'>",
-		"<img src='images/4.png'>",
-		"<img src='images/5.png'>",
-		"<img src='images/5.png'>",
-		"<img src='images/6.png'>",
-		"<img src='images/6.png'>",
-		"<img src='images/7.png'>",
-		"<img src='images/7.png'>",
-		"<img src='images/8.png'>",
-		"<img src='images/8.png'>",
-		"<img src='images/9.png'>",
-		"<img src='images/9.png'>",
-		"<img src='images/10.png'>",
-		"<img src='images/10.png'>",
-		"<img src='images/11.png'>",
-		"<img src='images/11.png'>",
-		"<img src='images/12.png'>",
-		"<img src='images/12.png'>",
-		"<img src='images/13.png'>",
-		"<img src='images/13.png'>",
+var cats = [
+	"<img src='images/cats/1.png'>", 
+	"<img src='images/cats/2.png'>",
+	"<img src='images/cats/3.png'>", 
+	"<img src='images/cats/4.png'>",
+	"<img src='images/cats/5.png'>",
+	"<img src='images/cats/6.png'>",
+	"<img src='images/cats/7.png'>",
+	"<img src='images/cats/8.png'>",
+	"<img src='images/cats/9.png'>",
+	"<img src='images/cats/10.png'>",
+	"<img src='images/cats/11.png'>",
+	"<img src='images/cats/12.png'>",
+];
 
-	];
+var dogs = [
+	"<img src='images/dogs/1.png'>", 
+	"<img src='images/dogs/2.png'>",
+	"<img src='images/dogs/3.png'>", 
+	"<img src='images/dogs/4.png'>",
+	"<img src='images/dogs/5.png'>",
+	"<img src='images/dogs/6.png'>",
+	"<img src='images/dogs/7.png'>",
+	"<img src='images/dogs/8.png'>",
+	"<img src='images/dogs/9.png'>",
+	"<img src='images/dogs/10.png'>",
+	"<img src='images/dogs/11.png'>",
+	"<img src='images/dogs/12.png'>",
+];
 
-	var gridSize = 4;
+var spiders = [
+	"<img src='images/spiders/1.png'>", 
+	"<img src='images/spiders/2.png'>",
+	"<img src='images/spiders/3.png'>", 
+	"<img src='images/spiders/4.png'>",
+	"<img src='images/spiders/5.png'>",
+	"<img src='images/spiders/6.png'>",
+	"<img src='images/spiders/7.png'>",
+	"<img src='images/spiders/8.png'>",
+	"<img src='images/spiders/9.png'>",
+	"<img src='images/spiders/10.png'>",
+	"<img src='images/spiders/11.png'>",
+	"<img src='images/spiders/12.png'>",
+];
 
-	var mgHtml = '';
-
-	cardsUp = '';
-
-console.log(cards)
+var shuffledCards = [];
+var gridSize = 4;
+var mgHtml = '';
+var cardsUp = '';
+var deck = cats;
 
 $(document).ready(function() {
+
+	$('.easy').prop('disabled', true);
+	$('.cats').prop('disabled', true)
 	
 	$('.easy').click(function(){
-		gridSize = 8;
+		gridSize = 4;
 		reset();
+		$(this).prop('disabled', true);
+		$('.med, .hard').prop('disabled', false)
 	});
 
 	$('.med').click(function(){
-		gridSize = 12;
+		gridSize = 8;
 		reset();
+		$(this).prop('disabled', true);
+		$('.easy, .hard').prop('disabled', false)
 	});
 
 	$('.hard').click(function(){
 		gridSize = 14;
 		reset();
+		$(this).prop('disabled', true);
+		$('.easy, .med').prop('disabled', false)
 	});
 
-	shuffleCards(cards);
+	$('.cats').click(function(){
+		deck = cats;
+		reset();
+		$(this).prop('disabled', true);
+		$('.dogs, .spiders').prop('disabled', false)
+	});
+
+	$('.dogs').click(function(){
+		deck = dogs;
+		reset();
+		$(this).prop('disabled', true);
+		$('.cats, .spiders').prop('disabled', false)
+	});
+
+	$('.spiders').click(function(){
+		deck = spiders;
+		reset();
+		$(this).prop('disabled', true);
+		$('.dogs, .cats').prop('disabled', false)
+	});
+
+	shuffleCards(deck);
 	placeCards();
 	addListener();
-
-	
 
 });
 
 function shuffleCards(array) {
-	for (var i = 1; i < 100; i++) {
-		card1 = Math.floor(Math.random() * (gridSize -1));
-		card2 = Math.floor(Math.random() * (gridSize -1));
-		var temp = array[card1];
-		array[card1] = array[card2];
-		array[card2] = temp;
+	for (var i = 0; i < gridSize; i++) {
+		shuffledCards.push(array[i]);
+		shuffledCards.push(array[i])
 	}
+
+	for (var i = 1; i < 100; i++) {
+		card1 = Math.floor(Math.random() * (gridSize - 1));
+		card2 = Math.floor(Math.random() * (gridSize - 1));
+		var temp = shuffledCards[card1];
+		shuffledCards[card1] = shuffledCards[card2];
+		shuffledCards[card2] = temp;
+	}
+	console.log(gridSize)
 }
 
 function placeCards(){
@@ -76,7 +123,7 @@ function placeCards(){
 			
 		mgHtml += "<div class='mg-tile col-sm-3'>";
 			mgHtml += "<div class='mg-tile-inner'>";
-					mgHtml += "<div class='mg-back'>" + cards[i] + "</div>";
+					mgHtml += "<div class='mg-back'>" + shuffledCards[i] + "</div>";
 
 				mgHtml += "<div class='mg-front'><img src='images/logo.png'></div>";
 			mgHtml += "</div>"
@@ -96,21 +143,17 @@ function addListener() {
 			if (cardsUp.find('.mg-back img')[0].src == cardsUp.find('.mg-back img')[1].src) {
 				cardsUp.addClass('matched');
 				cardsUp.removeClass('flip');
-
 			}
 			else {
 				setTimeout(function(){
 					cardsUp.removeClass('flip');
-				}, 1000)
-				
+				}, 1000)		
 			}
 		}
 		if ($('.matched').length == gridSize) {
 			
 			setTimeout(function(){
 				$('.matched').addClass('flip-back');
-
-
 			}, 1000);
 
 			setTimeout(function(){
@@ -119,9 +162,10 @@ function addListener() {
 
 			setTimeout(function(){
 				$('.matched').removeClass('matched');
+				shuffledCards = [];
 				mgHtml = '';
 				$('.mg-contents').html('');
-				shuffleCards(cards);
+				shuffleCards(deck);
 				placeCards();
 				addListener();
 
@@ -135,14 +179,17 @@ function addListener() {
 
 function reset() {
 	// setTimeout(function(){
-		$('.mg-tile-inner').addClass('slip-out');
+	$('.mg-tile').addClass('slip-out');
+	shuffledCards = [];
 	// }, 1000);
 
 	setTimeout(function(){
 		// $('.matched').removeClass('matched');
+		
+		shuffleCards(deck);
 		mgHtml = '';
 		$('.mg-contents').html('');
-		shuffleCards(cards);
+		
 		placeCards();
 		addListener();
 

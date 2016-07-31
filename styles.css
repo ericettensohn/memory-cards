@@ -13,6 +13,11 @@ div {
 .mg-tile {
 	perspective: 500px;
 	margin: auto;
+	animation: fadein 1s;
+}
+
+.difficulty-wrapper div {
+	display: inline-block;
 }
 
 
@@ -28,7 +33,7 @@ div {
 	margin: 10px auto;
 	border-radius: 5px;
 	text-align: center;
-	animation: fadein 1s;
+
 
 }
 
